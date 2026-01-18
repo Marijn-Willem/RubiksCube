@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="structure.js"></script>
+<script type="text/javascript" src="screenlogic.js"></script>
+<script type="text/javascript" src="moves.js"></script>
+<script type="text/javascript" src="positions.js"></script>
+<script type="text/javascript" src="oll.js"></script>
+<script type="text/javascript" src="pll.js"></script>
+<script type="text/javascript" src="scramble.js"></script>
+<script type="text/javascript" src="movesequence.js"></script>
+</head>
+<body style="background-color:black" onload="load();">
+<div align="center">
+<table id="tblContainer">
+<tr>
+<td/>
+<td>
+<table id="tblB">
+<tr><td>_</td><td>_</td><td>_</td></tr>
+<tr><td>_</td><td>_</td><td>_</td></tr>
+<tr><td>_</td><td>_</td><td>_</td></tr>
+</table>
+</td>
+<td/>
+</tr>
+<tr>
+<td>
+<table id="tblL">
+<tr><td>_</td><td>_</td><td>_</td></tr>
+<tr><td>_</td><td>_</td><td>_</td></tr>
+<tr><td>_</td><td>_</td><td>_</td></tr>
+</table>
+</td>
+<td>
+<table id="tblT">
+<tr><td>_</td><td>_</td><td>_</td></tr>
+<tr><td>_</td><td>_</td><td>_</td></tr>
+<tr><td>_</td><td>_</td><td>_</td></tr>
+</table>
+</td>
+<td>
+<table id="tblR">
+<tr><td>_</td><td>_</td><td>_</td></tr>
+<tr><td>_</td><td>_</td><td>_</td></tr>
+<tr><td>_</td><td>_</td><td>_</td></tr>
+</table>
+</td>
+</tr>
+<tr>
+<td/>
+<td>
+<table id="tblF">
+<tr><td>_</td><td>_</td><td>_</td></tr>
+<tr><td>_</td><td>_</td><td>_</td></tr>
+<tr><td>_</td><td>_</td><td>_</td></tr>
+</table>
+</td>
+<td/>
+</tr>
+<tr>
+<td/>
+<td>
+<table id="tblD">
+<tr><td>_</td><td>_</td><td>_</td></tr>
+<tr><td>_</td><td>_</td><td>_</td></tr>
+<tr><td>_</td><td>_</td><td>_</td></tr>
+</table>
+</td>
+<td/>
+</tr>
+</table>
+<input id="btnU" type="button" class="btnMove" onclick="moveU();" value="U" />
+<input id="btnUInv" type="button" class="btnMove" onclick="moveUInv();" value="U'" />
+<input id="btnU2" type="button" class="btnMove" onclick="moveU2();" value="U2" />
+<br/>
+<input id="btnR" type="button" class="btnMove" onclick="moveR();" value="R" />
+<input id="btnRInv" type="button" class="btnMove" onclick="moveRInv();" value="R'" />
+<input id="btnR2" type="button" class="btnMove" onclick="moveR2();" value="R2" />
+<br/>
+<input id="btnF" type="button" class="btnMove" onclick="moveF();" value="F" />
+<input id="btnFInv" type="button" class="btnMove" onclick="moveFInv();" value="F'" />
+<input id="btnF2" type="button" class="btnMove" onclick="moveF2();" value="F2" />
+<br/>
+<input id="btnL" type="button" class="btnMove" onclick="moveL();" value="L" />
+<input id="btnLInv" type="button" class="btnMove" onclick="moveLInv();" value="L'" />
+<input id="btnL2" type="button" class="btnMove" onclick="moveL2();" value="L2" />
+<br/>
+<input id="btnB" type="button" class="btnMove" onclick="moveB();" value="B" />
+<input id="btnBInv" type="button" class="btnMove" onclick="moveBInv();" value="B'" />
+<input id="btnB2" type="button" class="btnMove" onclick="moveB2();" value="B2" />
+<br/>
+<input id="btnD" type="button" class="btnMove" onclick="moveD();" value="D" />
+<input id="btnDInv" type="button" class="btnMove" onclick="moveDInv();" value="D'" />
+<input id="btnD2" type="button" class="btnMove" onclick="moveD2();" value="D2" />
+<br/>
+<input id="btnM" type="button" class="btnMove" onclick="moveM();" value="M" />
+<input id="btnMInv" type="button" class="btnMove" onclick="moveMInv();" value="M'" />
+<input id="btnM2" type="button" class="btnMove" onclick="moveM2();" value="M2" />
+<br/>
+<input id="btnUw" type="button" class="btnMove" onclick="moveUw();" value="Uw" />
+<input id="btnUwInv" type="button" class="btnMove" onclick="moveUwInv();" value="Uw'" />
+<br/>
+<input id="btnRw" type="button" class="btnMove" onclick="moveRw();" value="Rw" />
+<input id="btnRwInv" type="button" class="btnMove" onclick="moveRwInv();" value="Rw'" />
+<br/>
+<input id="btny" type="button" class="btnMove" onclick="moveY();" value="y" />
+<input id="btnyInv" type="button" class="btnMove" onclick="moveYInv();" value="y'" />
+<input id="btny2" type="button" class="btnMove" onclick="moveY2();" value="y2" />
+<br/>
+<input type="button" onclick="reset();" value="Reset" />
+<br/>
+<input id="txtMoves" type="text" style="font-size:25px" size="40" />
+<input type="button" onclick="clearMoves();" value="clear" />
+<br/>
+<input type="button" onclick="randomScramble();" value="Random scramble" />
+<br/>
+<input type="button" onclick="applySequenceInReverse(null);" value="Reverse execute" />
+<br/>
+<input type="button" onclick="applyTimeFramed();" value="Apply in time frame" />
+<input id="txtTimeFrame" type="text" style="front-size:25px" />
+<p>OLL</p>
+<input type="button" onclick="permOLLSune();" value="Sune" />
+<input type="button" onclick="permOLLAntiSune();" value="Anti Sune" />
+<input type="button" onclick="permOLLH();" value="H" />
+<input type="button" onclick="permOLLL();" value="L" />
+<input type="button" onclick="permOLLPi();" value="Pi" />
+<input type="button" onclick="permOLLT();" value="T" />
+<input type="button" onclick="permOLLU();" value="U" />
+<p>PLL</p>
+<input type="button" onclick="permPLLAa();" value="Aa" />
+<input type="button" onclick="permPLLAb();" value="Ab" />
+<input type="button" onclick="permPLLE();" value="E" />
+<input type="button" onclick="permPLLF();" value="F" />
+<input type="button" onclick="permPLLGa();" value="Ga" />
+<input type="button" onclick="permPLLGb();" value="Gb" />
+<input type="button" onclick="permPLLGc();" value="Gc" />
+<input type="button" onclick="permPLLGd();" value="Gd" />
+<input type="button" onclick="permPLLH();" value="H" />
+<input type="button" onclick="permPLLJa();" value="Ja" />
+<input type="button" onclick="permPLLJb();" value="Jb" />
+<input type="button" onclick="permPLLNa();" value="Na" />
+<input type="button" onclick="permPLLNb();" value="Nb" />
+<input type="button" onclick="permPLLRa();" value="Ra" />
+<input type="button" onclick="permPLLRb();" value="Rb" />
+<input type="button" onclick="permPLLT();" value="T" />
+<input type="button" onclick="permPLLUa();" value="Ua" />
+<input type="button" onclick="permPLLUb();" value="Ub" />
+<input type="button" onclick="permPLLV();" value="V" />
+<input type="button" onclick="permPLLY();" value="Y" />
+<input type="button" onclick="permPLLZ();" value="Z" />
+<p>Position</p>
+<input type="button" onclick="position(0,1);" value="W-G" />
+<input type="button" onclick="position(0,2);" value="W-R" />
+<input type="button" onclick="position(0,3);" value="W-B" />
+<input type="button" onclick="position(0,4);" value="W-O" />
+<br/>
+<input type="button" onclick="position(1,0);" value="G-W" />
+<input type="button" onclick="position(1,2);" value="G-R" />
+<input type="button" onclick="position(1,4);" value="G-O" />
+<input type="button" onclick="position(1,5);" value="G-Y" />
+<br/>
+<input type="button" onclick="position(2,0);" value="R-W" />
+<input type="button" onclick="position(2,1);" value="R-G" />
+<input type="button" onclick="position(2,3);" value="R-B" />
+<input type="button" onclick="position(2,5);" value="R-Y" />
+<br/>
+<input type="button" onclick="position(3,0);" value="B-W" />
+<input type="button" onclick="position(3,2);" value="B-R" />
+<input type="button" onclick="position(3,4);" value="B-O" />
+<input type="button" onclick="position(3,5);" value="B-Y" />
+<br/>
+<input type="button" onclick="position(4,0);" value="O-W" />
+<input type="button" onclick="position(4,1);" value="O-G" />
+<input type="button" onclick="position(4,3);" value="O-B" />
+<input type="button" onclick="position(4,5);" value="O-Y" />
+<br/>
+<input type="button" onclick="position(5,1);" value="Y-G" />
+<input type="button" onclick="position(5,2);" value="Y-R" />
+<input type="button" onclick="position(5,3);" value="Y-B" />
+<input type="button" onclick="position(5,4);" value="Y-O" />
+</div>
+</body>
+</html>
